@@ -1,10 +1,38 @@
 <?php require_once("include.php") ?>
 <?php require_once("classConnection.php") ?>
 <?php
-$table_name = "books.t3";
-
+$all_page = "";
+//----- создание соединения --------
 $c = Connection::getConnection();
 $c->connect();
+//---- Имя таблицы назначается -----
+//---- необходимо опросить БД ------
+//---- и задать селект->опшинс -----
+$q = "show tables";
+$r = mysql_query($q);
+// селект
+$select = new Select("tables", null);
+$select->onChange = "document.forma.submit();";
+// опшинс
+while($row = mysql_fetch_array($r, MYSQL_NUM)){  
+  $option = new Option("table", null, $row[0], $row[0]);
+  $select->addOption($option);
+}
+$form = new Form("forma");
+$form->addItem($select);
+echo $form->toString().np();
+
+/* поведение */
+//print_r($form);
+/* */
+if(!isset($_GET["tables"]))
+  return;
+
+
+$table_name = $_GET["tables"][0];
+//print_r($_GET["tables"]);
+//print_r($table_name);
+//----------------------------------
 
 // запросы в БД
 $q = "describe {$table_name};";
@@ -16,12 +44,10 @@ $length = mysql_num_rows($r);
 $table = new Table(null, null, "Таблица №1. Результат запроса: \"describe {$table_name}\"");
 $tr = new TableRow();
 //print_r($table);
-for($i = 0; $i < $length; $i++) {
-  if($row = mysql_fetch_array($r, MYSQL_NUM)) {
-    //echo $row[0] ."<br />\n";
-    $th = new TableDataHeader(null,null,$row[0]);
-    $tr->addCol($th);
-  }
+
+while($row = mysql_fetch_array($r, MYSQL_NUM)){
+  $th = new TableDataHeader(null,null,$row[0]);
+  $tr->addCol($th);
 }
 $table->addRow($tr);
 
@@ -40,9 +66,10 @@ for($i = 0; $i < $r_length; $i++) {
     $table->addRow($tr);
   }
 }
-echo $table->toString();
 
 // закрытие соединения
 $c->close();
 
+$all_page .= $table->toString();
+echo $all_page;
 ?>
