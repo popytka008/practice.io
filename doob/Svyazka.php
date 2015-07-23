@@ -1,35 +1,42 @@
 <?php  require_once("Privyazka.php"); ?>
 <?php// создать класс привязки данных к элементу
 class Svyazka extends Privyazka {
+  protected $item;
+  protected $data;
+  
   // получить {item}
-  public function vozmiItem(){
-    return $this->item;
+  public function vozmiTag(){
+    return $this->tag;
   }
-  // получить {data}
+  // получить {query}
   public function vozmiData(){
-      return $this->data;
+      return $this->query;
   }
-  // задать {item}
-  public function zadaiItem($item){
-    $this->item = $item;
+  // задать {tag}
+  public function zadaiTag($tag){
+    $this->tag = $tag;
   }
-  // задать {data}
-  public function zadaiData($data){
-    $this->data = $data;
+  // задать {query}
+  public function zadaiData($query){
+    $this->query = $query;
   }
 
-  // привязать {item} и {data}
+  // привязать {tag} и {query}
   // создать соединение и изъять данные
-  // подготовить объединение {data} в {item}.
+  // подготовить объединение {data} в {tag}.
   public function Privyazal(){
-    $doob = new Doob($this->item, $this->data);
-    return $doob->Doobodoob();
+    if($this->tag) {
+      $this->item = Pomosnik::getItem($this->tag);
+    }
+    if($this->query) {
+      $this->data = Doob::getData($this->query);
+    }    
   }
   
   abstract public function kakStroka(); // вывод результата привязки
   
-  public function __construct($item = null, $data = null){
-    parent::__construct($item, $data)
+  public function __construct($item = null, $query = null){
+    parent::__construct($item, $query);
   }
 }
 ?>
