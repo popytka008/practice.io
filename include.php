@@ -1,27 +1,28 @@
 <?php header ("Content-Type: text/html; charset=utf-8"); ?>
 <?php
-$inc = "class/";
-?>
-<?php require_once("class/classBase.php");  ?>
-<?php require_once("class/classSubmit.php");  ?>
-<?php require_once("class/classButton.php");  ?>
-<?php require_once("class/classReset.php");  ?>
-<?php require_once("class/classTextField.php");  ?>
-<?php require_once("class/classPwdField.php");  ?>
-<?php require_once("class/classRadio.php");  ?>
-<?php require_once("class/classCheckbox.php");  ?>
-<?php require_once("class/classHidden.php");  ?>
-<?php require_once("class/classFileUploadField.php");  ?>
-<?php require_once("class/classInputImage.php");  ?>
-<?php require_once("class/classTextarea.php");  ?>
-<?php require_once("class/classForm.php");  ?>
-<?php require_once("class/classSelect.php");  ?>
-<?php require_once("class/classTextNode.php");  ?>
-<?php require_once("class/classImage.php");  ?>
-<?php require_once("class/classLink.php");  ?>
-<?php require_once("class/classList.php");  ?>
-<?php require_once("class/classRealButton.php");  ?>
-<?php require_once("class/classTable.php");  ?>
-<?php require_once("class/classTableRow.php");  ?>
-<?php require_once("class/classTableData.php");  ?>
-<?php require_once("class/classTableDataHeader.php");  ?>
+require_once("class/Base.php");
+require_once("class/Submit.php");
+require_once("class/Button.php");
+require_once("class/Reset.php");
+require_once("class/TextField.php");
+require_once("class/PwdField.php");
+require_once("class/Radio.php");
+require_once("class/Checkbox.php");
+require_once("class/Hidden.php");
+require_once("class/FileUploadField.php");
+require_once("class/InputImage.php");
+require_once("class/Textarea.php");
+require_once("class/Form.php");
+require_once("class/Select.php");
+require_once("class/TextNode.php");
+require_once("class/Image.php");
+require_once("class/Link.php");
+require_once("class/OrderList.php");
+require_once("class/RealButton.php");
+require_once("class/Table.php");
+require_once("class/TableRow.php");
+require_once("class/TableData.php");
+require_once("class/TableDataHeader.php");
+
+require_once("templates/mainpage.php");
+require_once("Configurator.php");
