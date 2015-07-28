@@ -84,25 +84,33 @@ abstract class Primitive {
   protected $cls = ""; // class
   protected $name = "";   // name (= id )
   protected $tag = "";   // tag
-
   // id родительского элемента
   protected $owner;
   // тип тага (парный / единичный)
   public $doubleTag = Cons::YES;
+  // Привязка источника данных к элементу
+  protected $istok; // datasource
+
+  // методы работы с источником данных
+  public function razvertka() { }
 
   // get || set
+  public function getIstok() { return $this->istok; }
   public function getID() { return $this->id; }
   public function getStyle() { return $this->css; }
   public function getClass() { return $this->cls; }
   public function getName() { return $this->name; }
   public function getTag() { return $this->tag; }
 
+  public function setIstok($filename = null) {
+    $this->istok = Istocnik::verniIstok($filename);
+  }
   public function setID($id) { $this->id = $id; }
   public function setStyle($css) { $this->css = $css; }
   public function setClass($cls) { $this->cls = $cls; }
   public function setName($name) { $this->id = $this->name = $name; }
   public function setTag($tag) { $this->tag = $tag; }
- 
+
   // конструктор
   public function __construct ($name = null, $owner = null) {
     $this->owner = $owner;
@@ -124,7 +132,7 @@ abstract class Primitive {
   abstract public function toString($key = Cons::PLAIN) ;
   
   // функция класса для вывода (ВОЗМОЖНО ОШИБКА)
-  static public function out($item, $doubleTag = Cons::YES) {
+  static public function out($item) {
     return $item->toString(Cons::WRAP);
   }
 }
@@ -163,7 +171,8 @@ class Element extends Primitive {
   }
   
   public function write() {
-    if($this->tag == "") return $this->text;    
+    if($this->tag == "") return $this->text;
+    if($this->istok) $this->razvertka();
     
     $atr = "";
     $atr .= ($this->getID() == "") ?"" : " id='{$this->getID()}'";

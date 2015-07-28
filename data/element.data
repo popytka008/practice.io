@@ -1,0 +1,4 @@
+# table 'little' and column names
+table little
+columns id value caption
+

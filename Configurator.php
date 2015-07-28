@@ -97,7 +97,7 @@ class Configurator {
 
       //print_r($li); echo PHP_EOL;
     }
-    //$start->toString();
+    $start->toString();
   }
 
   static public function obraz(){

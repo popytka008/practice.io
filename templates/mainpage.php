@@ -13,7 +13,10 @@ $main = <<<HTML
       <h2>ЭЛЕМЕНТЫ В ШАБЛОНАХ</h2>
     </div>
     <div>
-      {razvertka}
+      {MySelect}
+    </div>
+    <div>
+      {MyList}
     </div>
   </body>
 </html>
