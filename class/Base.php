@@ -91,7 +91,10 @@ abstract class Primitive {
   // Привязка источника данных к элементу
   protected $istok; // datasource
 
-  // методы работы с источником данных
+ /**
+  * Заглушка метода, разворачивает элемент по привязке к источнику данных
+  * переписывается в частных (пользовательских) элементах управления
+  */
   public function razvertka() { }
 
   // get || set
@@ -102,6 +105,9 @@ abstract class Primitive {
   public function getName() { return $this->name; }
   public function getTag() { return $this->tag; }
 
+  /**
+   * @param null $filename - имя файла с БД-данными привязки
+   */
   public function setIstok($filename = null) {
     $this->istok = Istocnik::verniIstok($filename);
   }

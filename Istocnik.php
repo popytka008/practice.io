@@ -12,7 +12,7 @@ class Istocnik {
   protected $c;
   protected $filename;
 
-  public function __construct($filename = 'data/element.data'){
+  public function __construct($filename){
     $this->all = array("table"=>"", "columns"=>array());
     $this->c = Connection::getConnection();
     $this->filename = $filename;
@@ -75,6 +75,7 @@ class Istocnik {
     $columns = mysql_query($queryCols);
     $rows = mysql_query($queryRows);
 
+    // возвращает ресурсы
     return array("columns" => $columns, "rows" => $rows);
   }
 

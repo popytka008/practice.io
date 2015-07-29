@@ -25,7 +25,7 @@ require_once("class/TableData.php");
 require_once("class/TableDataHeader.php");
 
 require_once("templates/mainpage.php");
-require_once("Configurator.php");
+
 
 require_once("MySelect.php");
 require_once("MyList.php");
